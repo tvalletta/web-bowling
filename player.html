@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bowler</title>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"> 
+		<style type="text/css" media="screen">
+			#button {
+				background-image: url('img/bowling-ball.jpg');
+				border: 1px solid black;
+				height: 200px;
+				width: 100%;
+			}
+		</style>
+		<script src='js/lib/socket.io/socket.io.min.js'></script>
+		<script src='js/player.js'></script>
+		<script src='js/player-connection.js'></script>
+		<script>
+			connect(setReady);
+		</script>
+	</head>
+	<body>
+		<div id='main'>
+			<div>Bowler</div>
+			<div id='status'>Status: Wait</div>
+			<button id='button'>ball</button>
+		</div>
+	</body>
+</html>

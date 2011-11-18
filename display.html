@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bowler</title>
+		<meta name="viewport" content="width=device-width; initial-scale=2.0; maximum-scale=1.0;"> 
+		<script src="js/lib/Box2dWeb-2.1.a.3.min.js"></script>
+		<script src='js/lib/socket.io/socket.io.min.js'></script>
+		<script src='js/display.js'></script>
+		<script src='js/display-connection.js'></script>
+		<script>
+			function setReady() {
+				console.log("Ready.");
+				initDisplay();
+			}
+			connect(setReady);
+		</script>
+	</head>
+	<body>
+		<div id='main'>
+			<canvas id="canvas" width='400' height='1000'></canvas>
+		</div>
+	</body>
+</html>
