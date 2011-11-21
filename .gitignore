@@ -1,4 +1,8 @@
 .DS_Store
 logs/access_log
 logs/error_log
+<<<<<<< HEAD
 node/node_modules
+=======
+.idea
+>>>>>>> animation test
