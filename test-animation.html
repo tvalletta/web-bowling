@@ -2,19 +2,46 @@
 <html>
 <head>
     <style type="text/css">
-
-        #ball{
-            background: url(img/bowling-ball.jpg);
-            height: 300px;
-            width: 300px;
+        body {
+            margin: 0;
         }
 
+        #floor {
+            -webkit-transition: all 1s ease-in;
+            background: url(img/alleyfloor3.png) 0 -1800px no-repeat;
+            width: 405px;
+            height: 600px;
+        }
+
+        #floor:hover{
+            background: url(img/alleyfloor3.png) 0 0 no-repeat;
+        }
+
+        #ball {
+            -webkit-transition: all 1s ease-in;
+            position: relative;
+            bottom: -285px;
+            background: url(img/bowling-ball.png);
+            width: 300px;
+            height: 300px;
+            z-index: 2;
+            left: 50%;
+            right: 50%;
+            margin-left: -150px;
+        }
+
+        #floor:hover #ball{
+            -webkit-transform: translateY(-600px) rotateZ(180deg) scale(.5);
+        }
+       
     </style>
 </head>
 
 
 <body>
-    <div id="ball"></div>
+<div id="floor">
+    <div id="ball" class=""></div>
+</div>
 </body>
 
 </html>
