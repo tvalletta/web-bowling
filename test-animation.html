@@ -8,17 +8,13 @@
 
         #floor {
             -webkit-transition: all 1s ease-in;
-            background: url(img/alleyfloor3.png) 0 -1800px no-repeat;
+            background: url(img/alleyfloor4.png) 0 -1800px no-repeat;
             width: 405px;
             height: 600px;
         }
 
-        #floor:hover{
-            background: url(img/alleyfloor3.png) 0 0 no-repeat;
-        }
-
         #ball {
-            -webkit-transition: all 1s ease-in;
+            -webkit-transition: all 1.3s linear;
             position: relative;
             bottom: -285px;
             background: url(img/bowling-ball.png);
@@ -30,11 +26,29 @@
             margin-left: -150px;
         }
 
-        #floor:hover #ball{
-            -webkit-transform: translateY(-600px) rotateZ(180deg) scale(.5);
+        #floor:hover {
+            background: url(img/alleyfloor4.png) 0 0 no-repeat;
         }
-       
+
+        #floor:hover #ball {
+            -webkit-transform: translateY(-600px) rotateZ(-720deg) scale(.5);
+        }
+
     </style>
+
+    <script type="text/javascript">
+        document.addEventListener('DomContentLoaded', function() {
+            console.log("eek");
+            var e = document.getElementById("ball");
+            e.addEventListener("animationstart", listener, false);
+            e.addEventListener("animationend", listener, false);
+            e.addEventListener("animationiteration", listener, false);
+        });
+
+        function listener(e){
+            console.log(e);
+        }
+    </script>
 </head>
 
 
