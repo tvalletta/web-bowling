@@ -9,17 +9,17 @@ function initDisplay() {
 	
 	var canvas = document.getElementById('canvas');
 	
-	var b2Vec2 = Box2D.Common.Math.b2Vec2,
-		b2AABB = Box2D.Collision.b2AABB,
-		b2BodyDef = Box2D.Dynamics.b2BodyDef,
-		b2Body = Box2D.Dynamics.b2Body,
-		b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
-		b2Fixture = Box2D.Dynamics.b2Fixture,
-		b2World = Box2D.Dynamics.b2World,
-		b2MassData = Box2D.Collision.Shapes.b2MassData,
-		b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
-		b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
-		b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
+	var b2Vec2 			= Box2D.Common.Math.b2Vec2,
+		b2AABB 			= Box2D.Collision.b2AABB,
+		b2BodyDef 		= Box2D.Dynamics.b2BodyDef,
+		b2Body 			= Box2D.Dynamics.b2Body,
+		b2FixtureDef 	= Box2D.Dynamics.b2FixtureDef,
+		b2Fixture 		= Box2D.Dynamics.b2Fixture,
+		b2World 		= Box2D.Dynamics.b2World,
+		b2MassData 		= Box2D.Collision.Shapes.b2MassData,
+		b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape,
+		b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape,
+		b2DebugDraw 	= Box2D.Dynamics.b2DebugDraw,
 		b2MouseJointDef =  Box2D.Dynamics.Joints.b2MouseJointDef;
 		
 	var world = disp.world = new b2World(
@@ -33,32 +33,7 @@ function initDisplay() {
 	fixDef.restitution = 0.2;
 	
 	var bodyDef = disp.bodyDef = new b2BodyDef;
-	
-	// create ground
-	// bodyDef.type = b2Body.b2_staticBody;
-	// bodyDef.position.x = canvas.width / scale / 2;
-	// bodyDef.position.y = canvas.height / scale - 2;
-	// bodyDef.linearDamping = 0;
-	// bodyDef.angularDamping = 0.1;
-	// fixDef.shape = new b2PolygonShape;
-	// fixDef.shape.SetAsBox(canvas.width / scale / 2 * 0.8, 1);
-	// world.CreateBody(bodyDef).CreateFixture(fixDef);
-	
-	// create qBall
-	// bodyDef.type = b2Body.b2_dynamicBody;
-	// var radius = .6;
-	// fixDef.density = 5.0;
-	// fixDef.friction = 0.9;
-	// fixDef.restitution = 1 - radius;
-	// fixDef.shape = new b2CircleShape(radius);
-	// bodyDef.position.x = canvas.width / scale / 2;
-	// bodyDef.position.y = canvas.height / scale - 1;
-	// bodyDef.angle = Math.random() * Math.PI * 2;
-	// var qBallBody = world.CreateBody(bodyDef);
-	// qBallBody.SetAngularVelocity(8);
-	// qBallBody.SetLinearVelocity(new b2Vec2(0, -8));
-	// qBallBody.CreateFixture(fixDef);
-	
+
 	// create objects
 	bodyDef.type = b2Body.b2_dynamicBody;
 	for (var i = 0; i < objCnt; i++) {
@@ -119,31 +94,6 @@ function initDisplay() {
 	// Logic: do the computation
 	function update() {
 		var tick = +new Date;
-		// if (isMouseDown && !mouseJoint) {
-		// 	mouseBody = getBodyAtMouse();
-		// 	if (mouseBody) {
-		// 		var md = new b2MouseJointDef();
-		// 		md.bodyA = world.GetGroundBody();
-		// 		md.bodyB = mouseBody;
-		// 		md.target.Set(mouseX, mouseY);
-		// 		md.collideConnected = true;
-		// 		md.maxForce = 300.0 * mouseBody.GetMass();
-		// 		mouseJoint = world.CreateJoint(md);
-		// 		mouseBody.SetAwake(true);
-		// 	}
-		// }
-		// if (mouseJoint) {
-		// 	if (isMouseDown) {
-		// 		mouseJoint.SetTarget(new b2Vec2(mouseX, mouseY));
-		// 		av = mouseBody.GetAngularVelocity();
-		// 		// Partially counteract the selected item from turning
-		// 		mouseBody.SetAngularVelocity(
-		// 			Math.min(3, Math.max(-Math.abs(av), (Math.abs(av) - 1))) * (av < 0 ? -1 : 1));
-		// 	} else {
-		// 			world.DestroyJoint(mouseJoint);
-		// 			mouseJoint = null;
-		// 	}
-		// }
 		world.Step(
 			1.0 / fps,
 			10,       //velocity iterations
@@ -154,19 +104,14 @@ function initDisplay() {
 		var draw = false;
 		var delay = false;
 		if (tick < ptick) {
-			// If physics is ahead of realtime, then draw and delay.
 			draw = true;
 			delay = true;
 		} else if (tick < ptick + 1000 / fps) {
-			// If physics is a little behind realtime, draw but do not delay.
 			draw = true;
 		} else if (tick < dtick + 1000 / fpsMin) {
-			// If physics is way behind realtime, draw anyway and let fps drop.
 			draw = true;
 			if (ptick < dtick) ptick = dtick;
 		}
-		// If physics is more than one fps tick behind but not a full
-		// minfps tick behind, then drawing is skipped to try to catch up.
 		if (draw) {
 			fpsseen += 1;
 			dtick = tick;
@@ -178,12 +123,10 @@ function initDisplay() {
 	var sampletime = new Date().getTime();
 	setInterval(function() {
 		var now = new Date().getTime();
-		//if (now - lastmove > idleSec * 1000) window.location.reload();
 		var delta = now - sampletime;
 		sampletime = now;
 		var fps1 = Math.round(fpsseen / delta * 1000);
 		var fps2 = Math.round(fpscalc / delta * 1000);
-		//console.log(fps1 + '/' + fps2 + ' fps');
 		fpscalc = 0;
 		fpsseen = 0;
 	}, 1300);

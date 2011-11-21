@@ -4,6 +4,19 @@ var io = require('socket.io'),
 var app = express.createServer(),
     io = io.listen(app);
 
+io.configure('development', function(){
+	io.enable('browser client etag');
+	io.set('log level', 1);
+
+	io.set('transports', [
+		  'websocket'
+		, 'flashsocket'
+		, 'htmlfile'
+		, 'xhr-polling'
+		, 'jsonp-polling'
+	]);
+});
+	
 app.listen(3008);
 
 var displays = [],

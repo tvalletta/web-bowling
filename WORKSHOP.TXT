@@ -1,0 +1,18 @@
+1. Player
+	a. Event handling
+		i. Touch events
+		ii. Accelerometer and Gyroscope events
+	b. Calculations
+		i. Calculate Swing
+		ii. Sensor functions	
+2. Server
+	a. Socket.io
+		i. Node server code
+		ii. Player connection
+		iii. Display connection
+3. Display
+	a. Box2Djs
+		i. Setup "World"
+		ii. Build "Pins"
+		iii. Implement main loop
+		iv. Write Ball "Release" function
