@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src='js/lib/socket.io/socket.io.min.js'></script>
+    <script src='js/lib/classList.js'></script>
+    <script type="text/javascript" src="js/brains.js"></script>
+    <script type="text/javascript" src="js/player-connection.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+
+        #floor {
+            background: url(img/alleyfloorX.jpg) 0 -1600px no-repeat;
+            width: 405px;
+            height: 600px;
+        }
+
+        #ball {
+            position: relative;
+            bottom: -285px;
+            left: 50%;
+            right: 50%;
+            margin-left: -150px;
+            width: 300px;
+            height: 300px;
+            z-index: 2;
+            background: url(img/bowling-ball.png);
+        }
+
+        .animate-ball{
+            -webkit-transition: all 1.3s linear;
+        }
+
+        .animate-floor{
+            -webkit-transition: all 1.0s ease-in;
+        }
+
+
+        #floor.throw {
+            background: url(img/alleyfloorX.jpg) 0 0 no-repeat;
+        }
+
+        #floor.throw #ball {
+            -webkit-transform: translateY(-600px) rotateZ(-720deg) scale(.5);
+        }
+
+
+        .hidden{
+            display: none;
+        }
+
+         @-webkit-keyframes grab {
+            0%      { -webkit-transform: rotateZ(0deg); }
+            100%    { -webkit-transform: rotateZ(-360deg) }
+        }
+
+        #ball.grab{
+            -webkit-animation-name: grab;
+            -webkit-animation-duration: 5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-fill-mode: forwards;
+        }
+
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            connect(setReady);
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="floor">
+        <div id="ball" class="hidden"></div>
+    </div>
+</body>
+
+</html>
