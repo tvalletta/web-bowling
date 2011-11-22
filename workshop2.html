@@ -2,20 +2,6 @@
 
 <html>
 <head>
-    <!--http://developer.apple.com/library/IOs/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name = "viewport" content = "width=320, user-scalable=no">
-
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon-114x114.png"/>
-    <link rel="apple-touch-startup-image" href="/img/startup.png">
-
-    <script src='js/lib/socket.io/socket.io.min.js'></script>
-    <script src='js/lib/classList.js'></script>
-    <script type="text/javascript" src="js/brains.js"></script>
-    <script type="text/javascript" src="js/player-connection.js"></script>
-    <script type="text/javascript" src="js/player.js"></script>
-
     <style type="text/css">
         body {
             margin: 0;
@@ -57,7 +43,6 @@
             -webkit-transform: translateY(-600px) rotateZ(-720deg) scale(.5);
         }
 
-
         .hidden{
             display: none;
         }
@@ -74,21 +59,20 @@
             -webkit-animation-timing-function: linear;
             -webkit-animation-fill-mode: forwards;
         }
-
     </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            connect(setReady);
-        });
-    </script>
-
 </head>
-
 <body>
-    <div id="floor">
-        <div id="ball" class="hidden"></div>
-    </div>
+<div id="floor">
+    <div id="ball" class="hidden"></div>
+</div>
 </body>
-
 </html>
+
+
+<!--
+    1.  Add CSS styles for animations
+    2.  View in browser
+    3.  Add class animate-ball to ball, animate-throw to throw
+    4.  Add class throw to floor
+    5.  Hide ball using class hidden
+-->

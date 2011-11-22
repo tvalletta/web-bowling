@@ -2,19 +2,9 @@
 
 <html>
 <head>
-    <!--http://developer.apple.com/library/IOs/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name = "viewport" content = "width=320, user-scalable=no">
-
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon-114x114.png"/>
-    <link rel="apple-touch-startup-image" href="/img/startup.png">
-
     <script src='js/lib/socket.io/socket.io.min.js'></script>
     <script src='js/lib/classList.js'></script>
-    <script type="text/javascript" src="js/brains.js"></script>
-    <script type="text/javascript" src="js/player-connection.js"></script>
-    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/player-ws4.js"></script>
 
     <style type="text/css">
         body {
@@ -40,14 +30,13 @@
 
         }
 
-        .animate-ball{
+        .animate-ball {
             -webkit-transition: all 1.3s linear;
         }
 
-        .animate-floor{
+        .animate-floor {
             -webkit-transition: all 1.0s ease-in;
         }
-
 
         #floor.throw {
             background: url(img/alleyfloorZ.png) 0 0 no-repeat;
@@ -57,38 +46,39 @@
             -webkit-transform: translateY(-600px) rotateZ(-720deg) scale(.5);
         }
 
-
-        .hidden{
+        .hidden {
             display: none;
         }
 
-         @-webkit-keyframes grab {
+        @-webkit-keyframes grab {
             0%      { -webkit-transform: rotateZ(0deg); }
             100%    { -webkit-transform: rotateZ(-360deg) }
         }
 
-        #ball.grab{
+        #ball.grab {
             -webkit-animation-name: grab;
             -webkit-animation-duration: 5s;
             -webkit-animation-iteration-count: infinite;
             -webkit-animation-timing-function: linear;
             -webkit-animation-fill-mode: forwards;
         }
-
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            connect(setReady);
+        document.addEventListener('DOMContentLoaded', function() {
+            setReady();
         });
     </script>
-
 </head>
-
 <body>
-    <div id="floor">
-        <div id="ball" class="hidden"></div>
-    </div>
+<div id="floor">
+    <div id="ball" class="hidden"></div>
+</div>
 </body>
-
 </html>
+
+
+<!--
+    1.  Record orientation events
+    2.  Calculate swing
+-->

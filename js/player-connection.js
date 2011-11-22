@@ -1,5 +1,5 @@
 var socket,
-//	server = 'http://127.0.0.1:3008';
+//	server = 'http://localhost:3008';
 	server = 'http://10.109.38.135:3008';
 
 var connect = function(callback) {
