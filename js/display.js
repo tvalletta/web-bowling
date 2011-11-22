@@ -9,18 +9,20 @@ function initDisplay() {
 	
 	var canvas = document.getElementById('canvas');
 	
-	var b2Vec2 			= Box2D.Common.Math.b2Vec2,
+	var b2Math			= Box2D.Common.Math.b2Math,
+		b2Vec2 			= Box2D.Common.Math.b2Vec2,
 		b2AABB 			= Box2D.Collision.b2AABB,
 		b2BodyDef 		= Box2D.Dynamics.b2BodyDef,
 		b2Body 			= Box2D.Dynamics.b2Body,
 		b2FixtureDef 	= Box2D.Dynamics.b2FixtureDef,
 		b2Fixture 		= Box2D.Dynamics.b2Fixture,
 		b2World 		= Box2D.Dynamics.b2World,
+		b2Shape			= Box2D.Collision.Shapes.b2Shape,
 		b2MassData 		= Box2D.Collision.Shapes.b2MassData,
 		b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape,
 		b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape,
 		b2DebugDraw 	= Box2D.Dynamics.b2DebugDraw,
-		b2MouseJointDef =  Box2D.Dynamics.Joints.b2MouseJointDef;
+		b2MouseJointDef = Box2D.Dynamics.Joints.b2MouseJointDef;
 		
 	var world = disp.world = new b2World(
 		new b2Vec2(0, 0),		// gravity
@@ -77,9 +79,11 @@ function initDisplay() {
 		world.CreateBody(bodyDef).CreateFixture(fixDef);
 	}
 	
+	var ctx = canvas.getContext("2d");
+	
 	// setup debug draw
 	var debugDraw = new b2DebugDraw();
-	debugDraw.SetSprite(canvas.getContext("2d"));
+	debugDraw.SetSprite(ctx);
 	debugDraw.SetDrawScale(scale);
 	debugDraw.SetFillAlpha(0.3);
 	debugDraw.SetLineThickness(1.0);
@@ -115,7 +119,8 @@ function initDisplay() {
 		if (draw) {
 			fpsseen += 1;
 			dtick = tick;
-			world.DrawDebugData();
+			//world.DrawDebugData();
+			drawWorld(world, ctx);
 		}
 		world.ClearForces();
 		window.setTimeout(update, delay ? Math.max(0, 1000 / fps + ptick - new Date().getTime()) : 0);
@@ -131,8 +136,71 @@ function initDisplay() {
 		fpsseen = 0;
 	}, 1300);
 
+	// Draw the World Ourself
+	function drawWorld(world, ctx) {
+		for (var b = world.m_bodyList; b; b = b.m_next) {
+			var x = b;
+			for (var f = b.GetFixtureList(); f; f = f.m_next) {
+				drawShape(f.GetShape(), ctx);
+			}
+		}
+	}
+
+	function drawShape(shape, ctx) {
+		ctx.save();
+		if (shape.density === 5) {
+			ctx.strokeStyle = '#fff';
+			ctx.fillStyle = '#fff';
+		}
+		else {
+			ctx.strokeStyle = '#000'
+			ctx.fillStyle = '#000'
+		}
+		ctx.beginPath();
+		switch (shape.m_type) {
+			case b2Shape.e_circleShape: 
+				var circle = shape;
+				var pos = circle.m_p;
+				var r = circle.m_radius;
+				var segments = 16.0;
+				var theta = 0.0;
+				var dtheta = 2.0 * Math.PI / segments;
+
+				// draw circle
+				ctx.moveTo(pos.x + r, pos.y);
+				for (var i = 0; i < segments; i++) {
+					var d = new b2Vec2(r * Math.cos(theta), r * Math.sin(theta));
+					var v = b2Math.AddVV(pos, d);
+					ctx.lineTo(v.x, v.y);
+					theta += dtheta;
+				}
+				ctx.lineTo(pos.x + r, pos.y);
+
+				// draw radius
+				ctx.moveTo(pos.x, pos.y);
+				var ax = circle.m_R.col1;
+				var pos2 = new b2Vec2(pos.x + r * ax.x, pos.y + r * ax.y);
+				ctx.lineTo(pos2.x, pos2.y);
+				break;
+			case b2Shape.e_polyShape:
+				var poly = shape;
+				var tV = b2Math.AddVV(poly.m_position, b2Math.b2MulMV(poly.m_R, poly.m_vertices[0]));
+				ctx.moveTo(tV.x, tV.y);
+				for (var i = 0; i < poly.m_vertexCount; i++) {
+					var v = b2Math.AddVV(poly.m_position, b2Math.b2MulMV(poly.m_R, poly.m_vertices[i]));
+					ctx.lineTo(v.x, v.y);
+				}
+				ctx.lineTo(tV.x, tV.y);
+				break;
+		}
+		ctx.fill();
+		ctx.stroke();
+		ctx.restore();
+	}
+
 	update();
 };
+
 
 function release(data) {
 	console.log(data);

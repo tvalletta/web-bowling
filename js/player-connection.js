@@ -1,6 +1,10 @@
 var socket,
+<<<<<<< HEAD
 //	server = 'http://localhost:3008';
 	server = 'http://10.109.38.135:3008';
+=======
+	server = 'http://10.109.37.189:3008';
+>>>>>>> Workshop outline folders
 
 var connect = function(callback) {
 //	console.log("Attempting to connect to " + server);
