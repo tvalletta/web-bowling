@@ -74,6 +74,8 @@ var RotationSensorAlpha = function() {
 }
 
 var calcSwing = function() {
+//    trimSwing();
+    
     var samples = playr.orient.length;
 
     var ax = new GravitySensorAlpha(),

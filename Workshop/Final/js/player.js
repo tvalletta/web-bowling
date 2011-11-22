@@ -1,3 +1,8 @@
+//var grabEvent = "mousedown";
+var grabEvent = "touchstart";
+//var releaseEvent = "mouseup";
+var releaseEvent = "touchend";
+
 var playr = {};
 
 var setReady = function() {
@@ -9,8 +14,7 @@ var setReady = function() {
     playr.btn.classList.remove('hidden');
 
     //Attach Listener
-    playr.btn.addEventListener('touchstart', ballGrab);
-    playr.btn.addEventListener('mousedown', ballGrab);
+    playr.btn.addEventListener(grabEvent, ballGrab);
 };
 
 // Touch and Release Handlers -------------------------------------------------
@@ -21,10 +25,14 @@ var ballGrab = function(e) {
     //Make ball spin
     playr.btn.classList.add('grab');
 
-    playr.orient = [];
-
     //Toggle touch listeners
-    toggleListeners(ballRelease, ballGrab, true);
+    playr.btn.removeEventListener(grabEvent, ballGrab);
+    playr.btn.addEventListener(releaseEvent, ballRelease);
+
+    //Record orientation events, if supported
+    if(window.DeviceOrientationEvent){
+        window.addEventListener('devicemotion', record);
+    }
 
     return false;
 };
@@ -46,37 +54,38 @@ var ballRelease = function(e) {
     }, 1300);
 
     //Toggle listeners
-    toggleListeners(ballGrab, ballRelease, false);
+    playr.btn.removeEventListener(releaseEvent, ballRelease);
+    playr.btn.addEventListener(grabEvent, ballGrab);
 
-    //Send data to display through the websocket
-    socket.emit('release', calcSwing());
-};
-
-var toggleListeners = function(addFn, removeFn, attachDeviceListener){
-    playr.btn.removeEventListener('touchstart', removeFn);
-    playr.btn.removeEventListener('mousedown', removeFn);
-    playr.btn.addEventListener('touchend', addFn);
-    playr.btn.addEventListener('mouseup', addFn);
-
-    if(attachDeviceListener){
-        window.addEventListener('devicemotion', record);
-    }
-    else{
+    //Stop recording orientation events
+    if(window.DeviceOrientationEvent){
         window.removeEventListener('devicemotion', record);
     }
+
+    //Calculate Swing
+    var swing = calcSwing();
+
+    //Send data
+    socket.emit('release', swing);
 };
 
-// Sensor Recording -----------------------------------------------------------
+
 var record = function(e) {
+
     var acl = e.accelerationIncludingGravity,
         rot = e.rotationRate;
 
-    playr.orient.push({
+    var item = {
         ax: acl.x,
         ay: acl.y,
         az: acl.z,
         ra: rot.alpha,
         rb: rot.beta,
         rg: rot.gamma
-    });
+    };
+
+    console.log(item);
+    playr.orient.push(item);
 };
+
+//http://www.html5rocks.com/en/tutorials/device/orientation/
