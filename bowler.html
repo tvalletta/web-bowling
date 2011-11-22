@@ -2,6 +2,12 @@
 
 <html>
 <head>
+    <!--http://developer.apple.com/library/IOs/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="apple-touch-startup-image" href="/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon-114x114.png"/>
+
     <script src='js/lib/socket.io/socket.io.min.js'></script>
     <script src='js/lib/classList.js'></script>
     <script type="text/javascript" src="js/brains.js"></script>
@@ -20,6 +26,7 @@
         }
 
         #ball {
+            background: url(img/bowling-ball.png);
             position: relative;
             bottom: -285px;
             left: 50%;
@@ -28,7 +35,7 @@
             width: 300px;
             height: 300px;
             z-index: 2;
-            background: url(img/bowling-ball.png);
+
         }
 
         .animate-ball{
