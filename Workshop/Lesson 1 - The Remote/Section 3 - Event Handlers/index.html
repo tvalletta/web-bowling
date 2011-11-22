@@ -2,9 +2,8 @@
 
 <html>
 <head>
-    <script src='js/lib/socket.io/socket.io.min.js'></script>
     <script src='js/lib/classList.js'></script>
-    <script type="text/javascript" src="js/player-ws4.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
 
     <style type="text/css">
         body {
@@ -12,13 +11,13 @@
         }
 
         #floor {
-            background: url(img/alleyfloorZ.png) 0 -1278px no-repeat;
+            background: url(img/alleyfloor.png) 0 -1278px no-repeat;
             width: 320px;
             height: 460px;
         }
 
         #ball {
-            background: url(img/bowling-ball2.png) no-repeat;
+            background: url(img/bowling-ball.png) no-repeat;
             position: relative;
             bottom: -215px;
             left: 50%;
@@ -39,7 +38,7 @@
         }
 
         #floor.throw {
-            background: url(img/alleyfloorZ.png) 0 0 no-repeat;
+            background: url(img/alleyfloor.png) 0 0 no-repeat;
         }
 
         #floor.throw #ball {
@@ -65,7 +64,7 @@
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+         document.addEventListener('DOMContentLoaded', function(){
             setReady();
         });
     </script>
@@ -76,9 +75,3 @@
 </div>
 </body>
 </html>
-
-
-<!--
-    1.  Record orientation events
-    2.  Calculate swing
--->
