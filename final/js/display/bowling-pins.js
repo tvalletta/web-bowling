@@ -11,14 +11,14 @@ function createPins(world, fixDef, bodyDef) {
 
 		fixDef.density = 2.0;
 		fixDef.friction = 0.9;
-		fixDef.restitution = 0.6;
+		fixDef.restitution = 1;
 		fixDef.shape = new b2CircleShape(radius);
 
 		bodyDef.position.x = xCoord[i];
 		bodyDef.position.y = yCoord[i];
 		bodyDef.angle = Math.PI;			// Direction of the Pin (?)
-		bodyDef.linearDamping = 0.9;		// Slows Movement
-		bodyDef.angularDamping = 0.9;		// Slows Spin
+		bodyDef.linearDamping = 0.3;		// Slows Movement
+		bodyDef.angularDamping = 0.3;		// Slows Spin
 
 		world.CreateBody(bodyDef).CreateFixture(fixDef);
 	}
