@@ -5,7 +5,10 @@
 		<meta name="viewport" content="width=device-width; initial-scale=2.0; maximum-scale=1.0;"> 
 		<script src="js/lib/Box2dWeb-2.1.a.3.min.js"></script>
 		<script src='js/lib/socket.io/socket.io.min.js'></script>
-		<script src='js/display.js'></script>
+		<script src='js/display/bowling-alley.js'></script>
+		<script src='js/display/random-bodies.js'></script>
+		<script src='js/display/debug-draw.js'></script>
+		<script src='js/display/main-loop.js'></script>
 		<script src='js/display-connection.js'></script>
 		<style type="text/css" media="screen">
 			body { 
@@ -24,14 +27,15 @@
 		<script>
 			function setReady() {
 				console.log("Ready.");
-				initDisplay();
+				//initDisplay();
+				new BowlingAlley;
 			}
 			connect(setReady);
 		</script>
 	</head>
 	<body>
 		<div id='main'>
-			<canvas id="canvas" width='400' height='1000'></canvas>
+			<canvas id="alley" width='400' height='1000'></canvas>
 		</div>
 	</body>
 </html>
