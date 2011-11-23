@@ -47,32 +47,5 @@ function BowlingAlley(canvas) {
 	createPins(world, fixDef, bodyDef);
 	debugDraw(canvas, world, scale);
 	
-	/* --- Create Main Loop --- -------------------------------------------- */
 	new MainLoop(fps, fpsMin, world);
-	
-	/* --- Listen for Bowling Balls --- ------------------------------------ */
-	this.ball = function(data) {
-		var velocX = data.rg.power * .1;
-		var velocY = (data.ay.power + -data.az.power + data.ra.power) * -0.0333;
-		var spin = data.rb.power;
-
-		// create qBall
-		var radius = 1.2;
-
-		fixDef.density = 25.0;
-		fixDef.friction = 0.9;
-		fixDef.restitution = 1 - radius;
-		fixDef.shape = new Box2D.Collision.Shapes.b2CircleShape(radius);
-
-		bodyDef.linearDamping = 0.0;
-		bodyDef.angularDamping = 0.01;
-		bodyDef.position.x = canvas.width / scale / 2;
-		bodyDef.position.y = canvas.height / scale - 1;
-		bodyDef.angle = Math.random() * Math.PI * 2;
-
-		var qBallBody = world.CreateBody(bodyDef);
-		qBallBody.SetAngularVelocity(spin);
-		qBallBody.SetLinearVelocity(new Box2D.Common.Math.b2Vec2(velocX, velocY));
-		qBallBody.CreateFixture(fixDef);
-	}
 }
