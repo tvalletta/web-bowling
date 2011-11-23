@@ -17,8 +17,7 @@ function BowlingAlley(canvas) {
 	
 		fps 			= 30,
 		fpsMin 			= 10,
-		idleSec 		= 10,
-		scale 			= 30,
+		scale 			= 30;
 	
 	/* --- Setup World --- ------------------------------------------------- */
 	var world = new b2World(

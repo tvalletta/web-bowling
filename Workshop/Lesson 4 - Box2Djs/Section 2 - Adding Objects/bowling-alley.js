@@ -17,8 +17,7 @@ function BowlingAlley(canvas) {
 	
 		fps 			= 30,
 		fpsMin 			= 10,
-		idleSec 		= 10,
-		scale 			= 30,
+		scale 			= 30;
 	
 	/* --- Setup World --- ------------------------------------------------- */
 	var world = new b2World(
@@ -43,6 +42,8 @@ function BowlingAlley(canvas) {
 
 	
 	/* --- Create Objects --- ---------------------------------------------- */
-	createRandomBodies(20, world, fixDef, bodyDef);
-	debugDraw(canvas, world);
+	var canvas = document.getElementById('alley');
+	//createRandomBodies(20, canvas, world, fixDef, bodyDef);
+	createPins(canvas, world, fixDef, bodyDef);
+	debugDraw(canvas, world, scale);
 }
