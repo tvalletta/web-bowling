@@ -1,8 +1,10 @@
-var io = require('socket.io'),
-    express = require('express');
+var express = require('express'),
+    app = express.createServer();
+var io = require('socket.io').listen(app);
 
-var app = express.createServer(),
-    io = io.listen(app);
+var port = 3008;
+
+app.use(express.static(__dirname + "/.."));
 
 io.configure('development', function(){
 	io.enable('browser client etag');
@@ -16,8 +18,6 @@ io.configure('development', function(){
 		, 'jsonp-polling'
 	]);
 });
-	
-app.listen(3008);
 
 var displays = [],
 	players = [];
@@ -51,3 +51,7 @@ io.sockets.on('connection', function (socket) {
 		}
     });
 });
+
+app.listen(port);
+
+console.log("App started listening on port " + port);
