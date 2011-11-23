@@ -25,7 +25,7 @@ io.sockets.on('connection', function (socket) {
 		
     socket.on('release', function (data) {
 		console.log('release', data);
-		socket.broadcast.emit('release', data);
+		socket.broadcast.emit('ball', data);
     });
 });
 

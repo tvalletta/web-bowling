@@ -11,13 +11,13 @@ var connect = function(callback) {
 	socket.on('ack', function() {
 	    console.log('You have connected');
 
-	    //Execute the callback, which should be our setReady function
+	    //Execute the callback
 	    if(callback) {
-	        callback();     //This should unhide our bowling ball
+	        callback();
 	    }
 	});
 	
-	socket.on('release', function(data) {
+	socket.on('ball', function(data) {
 		bowlingAlley.ball(data);
 	});
 };
