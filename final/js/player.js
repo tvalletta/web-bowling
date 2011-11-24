@@ -1,7 +1,7 @@
-//var grabEvent = "mousedown";
-var grabEvent = "touchstart";
-//var releaseEvent = "mouseup";
-var releaseEvent = "touchend";
+var grabEvent = "mousedown";
+//var grabEvent = "touchstart";
+var releaseEvent = "mouseup";
+//var releaseEvent = "touchend";
 
 var playr = {};
 

@@ -1,5 +1,5 @@
 var socket,
-	server = 'http://10.111.160.87:3008';  //Be sure to use your servers ip address, and the port your server is listening on
+	server = 'http://10.111.160.87:3008';  //Be sure to use your servers ip address and port
 
 
 var connect = function(callback) {

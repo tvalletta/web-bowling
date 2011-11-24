@@ -1,6 +1,5 @@
 var socket,
-	server = 'http://10.111.160.87:3008';  //Be sure to use your servers ip address, and the port your server is listening on
-
+	server = 'http://127.0.0.1:3008';  //Be sure to use your servers ip address, and the port your server is listening on
 
 var connect = function(callback) {
 	console.log("Attempting to connect to " + server);
@@ -12,9 +11,13 @@ var connect = function(callback) {
 	socket.on('ack', function() {
 	    console.log('You have connected');
 
-	    //Execute the callback, which should be our setReady function
+	    //Execute the callback
 	    if(callback) {
-	        callback();     //This should unhide our bowling ball
+	        callback();
 	    }
+	});
+	
+	socket.on('ball', function(data) {
+		bowlingAlley.ball(data);
 	});
 };
