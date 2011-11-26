@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bowler</title>
+		<meta name="viewport" content="width=device-width; initial-scale=2.0; maximum-scale=1.0;"> 
+		<script src="js/lib/Box2dWeb-2.1.a.3.min.js"></script>
+		<script src='js/lib/socket.io/socket.io.min.js'></script>
+		<script src='js/display/bowling-alley.js'></script>
+		<script src='js/display/random-bodies.js'></script>
+		<script src='js/display/bowling-pins.js'></script>
+		<script src='js/display/debug-draw.js'></script>
+		<script src='js/display/main-loop.js'></script>
+		<script src='js/display/connection.js'></script>
+		<style type="text/css" media="screen">
+			body { 
+				margin: 0;
+				padding: 0; 
+			}
+			#main {
+				background-image: url("img/alleyfloorX.jpg");
+				margin-left: auto;
+				margin-right: auto;
+				padding: 0;
+				position: relative;
+				width: 400px; height: 1000px;
+			}
+		</style>
+		<script>
+			var bowlingAlley;
+			function setReady() {
+				console.log("Ready.");
+				//initDisplay();
+				bowlingAlley = new BowlingAlley;
+			}
+			connect(setReady);
+		</script>
+	</head>
+	<body>
+		<div id='main'>
+			<canvas id="alley" width='400' height='1000'></canvas>
+		</div>
+	</body>
+</html>
