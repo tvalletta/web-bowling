@@ -17,9 +17,9 @@ var setReady = function() {
     playr.btn = document.getElementById('ball');
     playr.orient = null;
 
-    //todo: unhide the bowling ball
+    //todo: unhide the bowling ball (L1.2 b)
 
-    //todo: attach grab listener
+    //todo: attach grab listener (L1.2 c)
 };
 
 /**
@@ -31,17 +31,16 @@ var ballGrab = function(e) {
     e.stopPropagation();
 
     //Make ball spin
-    //todo: add class to make ball spin
+    //todo: add class to make ball spin (L1.2 d)
 
     //Toggle touch listeners
-    //todo: toggle grab/release events
+    //todo: toggle grab/release events (L1.2 d)
 
     //Reset our data
     playr.orient = [];
 
     //Record orientation events, if supported
-
-    //todo: check for deviceorientation support, add listener
+    //todo: check for deviceorientation support, add listener (L1.3 a)
 
     return false;
 };
@@ -53,29 +52,29 @@ var ballGrab = function(e) {
  */
 var ballRelease = function(e) {
     //Remove class for touch
-    //todo: remove class that makes ball spin
+    //todo: remove class that makes ball spin (L1.2 e)
 
     //Animate the throw
-    //todo: animate the throw by adding the right css classes
+    //todo: animate the throw by adding the right css classes (L1.2 e)
 
 
     //Return ball after animation
-    //todo: return ball after the animation and remove the animation classes
+    //todo: return ball after the animation and remove the animation classes (L1.2 e)
 
 
     //Toggle listeners
-    //todo: toggle grab/release events
+    //todo: toggle grab/release events (L1.2 e)
 
 
     //Stop recording orientation events
-    //todo:  stop recording orientation events
+    //todo:  stop recording orientation events (L1.3)
 
 
     //Calculate Swing
-    //todo:  call calculate swing
+    //todo:  call calculate swing (L1.3 b)
 
     //Send data
-    //todo:  send swing data to socket
+    //todo:  send swing data to socket (L2.2 a)
 };
 
 /**

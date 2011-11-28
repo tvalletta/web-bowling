@@ -25,7 +25,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.emit('ack', { message: 'You are connected.' });
 
-    // todo: add listener for release messages
+    // todo: add listener for release messages (L2.2 b)
 });
 
 

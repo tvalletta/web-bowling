@@ -1,5 +1,5 @@
 var socket,
-	server = 'http://10.111.160.87:3008';  //Be sure to use your servers ip address and port
+	server = 'http://127.0.0.1:3008';  //todo: Be sure to use your servers ip address and port (L2.1 a)
 
 
 var connect = function(callback) {
@@ -9,12 +9,5 @@ var connect = function(callback) {
 	socket = io.connect(server);
 
     //Listen for ack from server that we have connected
-	socket.on('ack', function() {
-	    console.log('You have connected');
-
-	    //Execute the callback, which should be our setReady function
-	    if(callback) {
-	        callback();     //This should unhide our bowling ball
-	    }
-	});
+    //todo:  Add listener for ack messages (L2.1 b)
 };
