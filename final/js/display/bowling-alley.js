@@ -48,7 +48,9 @@ function BowlingAlley(canvas) {
 	debugDraw(canvas, world, scale);
 	
 	/* --- Create Main Loop --- -------------------------------------------- */
-	new MainLoop(fps, fpsMin, world);
+	var ctx = canvas.getContext("2d");
+	var renderer = new Renderer(ctx, scale);
+	new MainLoop(fps, fpsMin, world, renderer);
 	
 	/* --- Listen for Bowling Balls --- ------------------------------------ */
 	this.ball = function(data) {
