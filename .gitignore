@@ -1,5 +1,4 @@
 .DS_Store
 logs/access_log
 logs/error_log
-node/node_modules
 .idea
