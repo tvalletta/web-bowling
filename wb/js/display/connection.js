@@ -17,7 +17,5 @@ var connect = function(callback) {
 	    }
 	});
 	
-	socket.on('ball', function(data) {
-		bowlingAlley.ball(data);
-	});
+    //todo:  Add listener for ball messages (L3.5 a)
 };
