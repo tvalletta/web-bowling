@@ -31,5 +31,5 @@ function MainLoop(fps, fpsMin, world, renderer) {
 	};
 
 	// Initial update
-	// todo: call update for the first time L3.3 a
+	update();
 }

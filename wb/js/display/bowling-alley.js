@@ -47,7 +47,7 @@ function BowlingAlley(canvas) {
 
 
     // Main loop
-    // todo: create the game's main loop (L3.3 b)
+    new MainLoop(fps, fpsMin, world);
 
     this.ball = function(data) {
         console.log("Ball: " + data);
