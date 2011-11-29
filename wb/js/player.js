@@ -88,10 +88,6 @@ var ballRelease = function(e) {
     var swing = fakeSwing();
     console.log(swing);  //For now just log it!
 
-
-    //Calculate Swing
-    //todo:  call calculate swing (L1.3 b)
-
     //Send data
     socket.emit('release', swing);
 };
