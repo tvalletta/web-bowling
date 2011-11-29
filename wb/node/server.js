@@ -30,11 +30,11 @@ io.sockets.on('connection', function (socket) {
 
 
 //Serve up static resources
-//todo: add directory for serving static resources (L0.2 a)
+app.use(express.static(__dirname + "/.."));
 
 
 //Start app
-//todo: start the server listening for connections (L0.2 b)
+app.listen(3008);
 
 
 console.log("Server started...");
