@@ -43,16 +43,43 @@
 
         }
 
-        .hidden{
+        .hidden {
             display: none;
         }
 
-        /** todo: Add CSS classes for our animations (L1.1 a-e) **/
+        .animate-ball {
+            -webkit-transition: all 1.3s linear;
+        }
+
+        .animate-floor {
+            -webkit-transition: all 1.0s ease-in;
+        }
+
+        #floor.throw {
+            background: url(img/alleyfloor.png) 0 0 no-repeat;
+        }
+
+        #floor.throw #ball {
+            -webkit-transform: translateY(-600px) rotateZ(-720deg) scale(.5);
+        }
+
+        @-webkit-keyframes spin {
+            0%      { -webkit-transform: rotateZ(0deg); }
+            100%    { -webkit-transform: rotateZ(-360deg) }
+        }
+
+        #ball.grab {
+            -webkit-animation-name: spin;
+            -webkit-animation-duration: 5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-fill-mode: forwards;
+        }
 
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function(){
+        document.addEventListener('DOMContentLoaded', function() {
             // todo: add call to setReady (L1.2 a)
             // todo: add call to connect (L2.1 c)
 
@@ -63,10 +90,10 @@
 </head>
 
 <body>
-    <div id="floor">
-        <!--todo: hide ball by default (L1.1 f)-->
-        <div id="ball"></div>
-    </div>
+<div id="floor">
+    <!--todo: hide ball by default (L1.1 f)-->
+    <div id="ball" class="hidden"></div>
+</div>
 </body>
 
 </html>
