@@ -93,7 +93,7 @@ var ballRelease = function(e) {
     //todo:  call calculate swing (L1.3 b)
 
     //Send data
-    //todo:  send swing data to socket (L2.2 a)
+    socket.emit('release', swing);
 };
 
 /**

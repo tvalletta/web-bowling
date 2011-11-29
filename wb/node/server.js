@@ -22,7 +22,10 @@ io.sockets.on('connection', function (socket) {
 
     socket.emit('ack', { message: 'You are connected.' });
 
-    // todo: add listener for release messages (L2.2 b)
+    socket.on('release', function (data) {
+        console.log('Recieved release data', data);
+        socket.broadcast.emit('ball', data);
+    });
 });
 
 
