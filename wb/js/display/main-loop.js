@@ -23,7 +23,7 @@ function MainLoop(fps, fpsMin, world, renderer) {
 		}
 		if (draw) {
 			dtick = tick;
-			if (renderer) renderer.render(world, ctx);
+			if (renderer) renderer.render(world);
 			else world.DrawDebugData();
 		}
 		world.ClearForces();
