@@ -17,9 +17,9 @@ var setReady = function() {
     playr.btn = document.getElementById('ball');
     playr.orient = null;
 
-    //todo: unhide the bowling ball (L1.2 b)
+    playr.btn.classList.remove('hidden');
 
-    //todo: attach grab listener (L1.2 c)
+    playr.btn.addEventListener(grabEvent, ballGrab);
 };
 
 /**
@@ -31,10 +31,11 @@ var ballGrab = function(e) {
     e.stopPropagation();
 
     //Make ball spin
-    //todo: add class to make ball spin (L1.2 d)
+     playr.btn.classList.add('grab');
 
     //Toggle touch listeners
-    //todo: toggle grab/release events (L1.2 d)
+    playr.btn.removeEventListener(grabEvent, ballGrab);
+    playr.btn.addEventListener(releaseEvent, ballRelease);
 
     //Reset our data
     playr.orient = [];
@@ -52,18 +53,26 @@ var ballGrab = function(e) {
  */
 var ballRelease = function(e) {
     //Remove class for touch
-    //todo: remove class that makes ball spin (L1.2 e)
+    playr.btn.classList.remove('grab');
 
     //Animate the throw
-    //todo: animate the throw by adding the right css classes (L1.2 e)
+    playr.btn.classList.add('animate-ball');
+    playr.floor.classList.add('animate-floor');
+    playr.floor.classList.add('throw');
 
 
     //Return ball after animation
-    //todo: return ball after the animation and remove the animation classes (L1.2 e)
+    setTimeout(function() {
+        //Remove the transition classes so that it doesn't animate the return of the ball
+        playr.btn.classList.remove('animate-ball');
+        playr.floor.classList.remove('animate-floor');
+        playr.floor.classList.remove('throw');
+    }, 1300);
 
 
     //Toggle listeners
-    //todo: toggle grab/release events (L1.2 e)
+    playr.btn.removeEventListener(releaseEvent, ballRelease);
+    playr.btn.addEventListener(grabEvent, ballGrab);
 
 
     //Stop recording orientation events
