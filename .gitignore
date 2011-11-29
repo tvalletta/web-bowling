@@ -3,5 +3,3 @@ logs/access_log
 logs/error_log
 node/node_modules
 .idea
-
-wb/node/node_modules
