@@ -39,11 +39,12 @@ function BowlingAlley(canvas) {
     // bodyDef.type = b2Body.b2_staticBody;
 
     // Canvas element
-    // todo: Create a variable for the canvas element (L3.2 a)
+    var canvas = document.getElementById('alley');
 
     // Create shapes
-    // todo: Create and draw random shapes (L3.2 b)
-    // todo: Replace the random shapes call with createPins  (L3.2 d)
+    createPins(world, fixDef, bodyDef);
+    debugDraw(canvas, world, scale);
+
 
     // Main loop
     // todo: create the game's main loop (L3.3 b)
