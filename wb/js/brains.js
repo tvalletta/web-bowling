@@ -7,7 +7,7 @@ var GravitySensorAlpha = function() {
     this.calc = function() {
         var ave = [],
             I = this.values.length;
-        i = I,
+        	i = I,
             dir = 0,
             total = 0;
 
@@ -85,8 +85,8 @@ var fakeSwing = function() {
 };
 
 var calcSwing = function() {
-    trimSwing();
-
+    //trimSwing();
+    
     var samples = playr.orient.length;
 
     var ax = new GravitySensorAlpha(),
@@ -124,12 +124,16 @@ var calcSwing = function() {
 
 // Calculate Swing ------------------------------------------------------------
 var trimSwing = function() {
-    for (var i = (playr.orient.length - 1); i >= 0; i--) {
-        if (playr.orient[i].ra < 0) {
-            playr.orient = playr.orient.slice(i + 1);
-            return;
-        }
-    }
+	var cnt = playr.orient.length;
+	if (cnt) {
+	    for (var i = cnt; i > 0; i--) {
+			console.log(i);
+	        if (playr.orient[i - 1].ra < 0) {
+	            playr.orient = playr.orient.slice(i);
+	            return;
+	        }
+	    }
+	}
 };
 
 
