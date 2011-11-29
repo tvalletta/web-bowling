@@ -43,11 +43,13 @@ function BowlingAlley(canvas) {
 
     // Create shapes
     createPins(world, fixDef, bodyDef);
-    debugDraw(canvas, world, scale);
+    //debugDraw(canvas, world, scale);
 
-
+    var ctx = canvas.getContext("2d");
+    var renderer = new Renderer(ctx, scale);
+    
     // Main loop
-    new MainLoop(fps, fpsMin, world);
+    new MainLoop(fps, fpsMin, world, renderer);
 
     this.ball = function(data) {
         console.log("Ball: " + data);
