@@ -3,9 +3,6 @@ var express = require('express'),
 
 var io = require('socket.io').listen(app);
 
-//Serve up static resources
-app.use(express.static(__dirname + "/.."));
-
 //Configure Socket.IO
 io.configure('development', function(){
 	io.enable('browser client etag');
@@ -29,6 +26,15 @@ io.sockets.on('connection', function (socket) {
 });
 
 
+
+
+
+//Serve up static resources
+//todo: add directory for serving static resources (L0.2 a)
+
+
 //Start app
-app.listen(3008);
+//todo: start the server listening for connections (L0.2 b)
+
+
 console.log("Server started...");
