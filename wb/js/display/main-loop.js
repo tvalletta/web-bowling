@@ -30,5 +30,6 @@ function MainLoop(fps, fpsMin, world, renderer) {
 		window.setTimeout(update, delay ? Math.max(0, 1000 / fps + ptick - +new Date) : 0);
 	};
 
-	update();
+	// Initial update
+	// todo: call update for the first time L3.3 a
 }

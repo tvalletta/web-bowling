@@ -34,4 +34,19 @@ function BowlingAlley(canvas) {
 	// todo: Create and draw random shapes (L3.2 b)
 	// todo: Replace the random shapes call with createPins  (L3.2 d)
 
+	// Main loop
+	// todo: create the game's main loop (L3.3 b)
+	
+	this.ball = function(data) {
+		console.log("Ball: " + data);
+		
+		// Variables for x velocity, y velocity, and spin
+		// todo: Create variables for x velocity, y velocity, and spin (L3.4 a)
+
+		// The bowling ball
+		// todo: Create a bowling ball (L3.4 b)
+
+		// Angular and linear velocity
+		// todo: Create the ball with angular and linear velocity (L3.4 c)
+	}
 }
