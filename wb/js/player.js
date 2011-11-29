@@ -31,7 +31,7 @@ var ballGrab = function(e) {
     e.stopPropagation();
 
     //Make ball spin
-     playr.btn.classList.add('grab');
+    playr.btn.classList.add('grab');
 
     //Toggle touch listeners
     playr.btn.removeEventListener(grabEvent, ballGrab);
@@ -41,7 +41,10 @@ var ballGrab = function(e) {
     playr.orient = [];
 
     //Record orientation events, if supported
-    //todo: check for deviceorientation support, add listener (L1.3 a)
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('devicemotion', record);
+    }
+
 
     return false;
 };
@@ -76,7 +79,14 @@ var ballRelease = function(e) {
 
 
     //Stop recording orientation events
-    //todo:  stop recording orientation events (L1.3)
+    if (window.DeviceOrientationEvent) {
+        window.removeEventListener('devicemotion', record);
+    }
+
+    //Calculate Swing
+//    var swing = calcSwing();
+    var swing = fakeSwing();
+    console.log(swing);  //For now just log it!
 
 
     //Calculate Swing
