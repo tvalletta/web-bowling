@@ -1,7 +1,7 @@
 .DS_Store
 logs/access_log
 logs/error_log
-node/node_modules
 .idea
 
-wb/node/node_modules
+node/node_modules/
+wb/node/node_modules/
