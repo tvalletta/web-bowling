@@ -2,6 +2,3 @@
 logs/access_log
 logs/error_log
 .idea
-
-node/node_modules/
-wb/node/node_modules/
