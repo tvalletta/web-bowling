@@ -2,13 +2,13 @@
 
 <html>
 <head>
-    <!-- todo:  add link tag to specify an icon to use when adding apps to desktop (L4.1 b) -->
+    <link rel="apple-touch-icon" href="img/apple-touch-icon-114x114.png"/>
 
-    <!-- todo:  add meta tag to configure the viewport (L4.1 c) -->
+    <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-    <!-- todo:  add meta tag to run in full screen mode, for iOS (L4.1 d) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <!-- todo:  add meta tag to configure the status bar, for iOS (L4.1 e) -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
     <title>Web Bowling</title>
 
@@ -82,7 +82,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             connect(setReady());
 
-            //todo : add code to scroll 1px, hiding the address bar (L4.1 a)
+            setTimeout(function () {
+                window.scrollTo(0, 1);
+            }, 1000);
         });
     </script>
 
