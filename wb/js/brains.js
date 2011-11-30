@@ -1,4 +1,44 @@
 // Calculate power and acceleration -------------------------------------------
+var GravitySensorX = function() {
+	this.values = [];
+	this.power = 0;
+	this.accel = 0;
+
+	this.calc = function() {
+		var cnt = this.values.length
+		for (var i = 0; i < cnt; i++) {
+			this.power = Math.round((this.values[i] / 9.81) * -90);
+		}
+	}
+	
+	this.result = function() {
+		return {
+			power: this.power,
+			accel: this.accel
+		}
+	}
+}
+
+var GravitySensorY = function() {
+	this.values = [];
+	this.power = 0;
+	this.accel = 0;
+
+	this.calc = function() {
+		var cnt = this.values.length
+		for (var i = 0; i < cnt; i++) {
+			this.power = Math.round(((this.values[i] + 9.81) / 9.81) * 90);
+		}
+	}
+	
+	this.result = function() {
+		return {
+			power: this.power,
+			accel: this.accel
+		}
+	}
+}
+
 var GravitySensorAlpha = function() {
     this.values = [];
     this.power = 0;
@@ -89,8 +129,8 @@ var calcSwing = function() {
     
     var samples = playr.orient.length;
 
-    var ax = new GravitySensorAlpha(),
-        ay = new GravitySensorAlpha(),
+    var ax = new GravitySensorX(),
+        ay = new GravitySensorY(),
         az = new GravitySensorAlpha(),
         ra = new RotationSensorAlpha(),
         rb = new RotationSensorAlpha(),
