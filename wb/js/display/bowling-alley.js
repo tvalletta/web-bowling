@@ -55,7 +55,7 @@ function BowlingAlley(canvas) {
         console.log("Ball: " + data);
 
         // Variables for x velocity, y velocity, and spin
-        var velocX = (data) ? data.rg.power * .1 : 0.03;
+        var velocX = (data) ? data.ax.power * 0.03 : 0.03;
         var velocY = (data) ? (data.ay.power + -data.az.power + data.ra.power) * -0.0333 : -10;
         var spin = (data) ? data.rb.power : 10;
 
