@@ -1,10 +1,10 @@
-var express = require('express'),
-    app = express.createServer();   //Create web server
+var express = require('express');   //Create web server
+var app = express.createServer();
 
 var io = require('socket.io').listen(app);
 
 //Configure Socket.IO
-io.configure('development', function(){
+io.configure('development', () => {
 	io.enable('browser client etag');
 	io.set('log level', 1);
 	io.set('transports', [
@@ -17,7 +17,7 @@ io.configure('development', function(){
 });
 
 //Listen for connections
-io.sockets.on('connection', function (socket) {
+io.sockets.on('connection', socket => {
 	console.log('Connection Made', socket.id);
 
     socket.emit('ack', { message: 'You are connected.' });

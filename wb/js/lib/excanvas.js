@@ -33,7 +33,7 @@
 // only add this code if we do not already have a canvas implementation
 if (!window.CanvasRenderingContext2D) {
 
-(function () {
+((() => {
 
   // alias some functions to make (compiled) code shorter
   var m = Math;
@@ -46,17 +46,17 @@ if (!window.CanvasRenderingContext2D) {
   var Z2 = Z / 2;
 
   var G_vmlCanvasManager_ = {
-    init: function (opt_doc) {
+    init(opt_doc) {
       var doc = opt_doc || document;
       if (/MSIE/.test(navigator.userAgent) && !window.opera) {
         var self = this;
-        doc.attachEvent("onreadystatechange", function () {
+        doc.attachEvent("onreadystatechange", () => {
           self.init_(doc);
         });
       }
     },
 
-    init_: function (doc) {
+    init_(doc) {
       if (doc.readyState == "complete") {
         // create xmlns
         if (!doc.namespaces["g_vml_"]) {
@@ -80,7 +80,7 @@ if (!window.CanvasRenderingContext2D) {
       }
     },
 
-    fixElement_: function (el) {
+    fixElement_(el) {
       // in IE before version 5.5 we would need to add HTML: to the tag name
       // but we do not care about IE before version 6
       var outerHTML = el.outerHTML;
@@ -112,7 +112,7 @@ if (!window.CanvasRenderingContext2D) {
      * @param {HTMLElement} el The canvas element to initialize.
      * @return {HTMLElement} the element that was created.
      */
-    initElement: function (el) {
+    initElement(el) {
       el = this.fixElement_(el);
       el.getContext = function () {
         if (this.context_) {
@@ -219,7 +219,8 @@ if (!window.CanvasRenderingContext2D) {
   }
 
   function processStyle(styleString) {
-    var str, alpha = 1;
+    var str;
+    var alpha = 1;
 
     styleString = String(styleString);
     if (styleString.substring(0, 3) == "rgb") {
@@ -360,10 +361,10 @@ if (!window.CanvasRenderingContext2D) {
                            x: aX,
                            y: aY,
                            radius: aRadius,
-                           xStart: xStart,
-                           yStart: yStart,
-                           xEnd: xEnd,
-                           yEnd: yEnd});
+                           xStart,
+                           yStart,
+                           xEnd,
+                           yEnd});
 
   };
 
@@ -397,14 +398,12 @@ if (!window.CanvasRenderingContext2D) {
     this.fill();
   };
 
-  contextPrototype.createLinearGradient = function(aX0, aY0, aX1, aY1) {
+  contextPrototype.createLinearGradient = (aX0, aY0, aX1, aY1) => {
     var gradient = new CanvasGradient_("gradient");
     return gradient;
   };
 
-  contextPrototype.createRadialGradient = function(aX0, aY0,
-                                                   aR0, aX1,
-                                                   aY1, aR1) {
+  contextPrototype.createRadialGradient = (aX0, aY0, aR0, aX1, aY1, aR1) => {
     var gradient = new CanvasGradient_("gradientradial");
     gradient.radius1_ = aR0;
     gradient.radius2_ = aR1;
@@ -414,7 +413,14 @@ if (!window.CanvasRenderingContext2D) {
   };
 
   contextPrototype.drawImage = function (image, var_args) {
-    var dx, dy, dw, dh, sx, sy, sw, sh;
+    var dx;
+    var dy;
+    var dw;
+    var dh;
+    var sx;
+    var sy;
+    var sw;
+    var sh;
 
     // to find the original width we overide the width and height
     var oldRuntimeWidth = image.runtimeStyle.width;
@@ -630,9 +636,7 @@ if (!window.CanvasRenderingContext2D) {
 
       // We need to sort 'colors' by percentage, from 0 > 100 otherwise ie
       // won't interpret it correctly
-      this.fillStyle.colors_.sort(function (cs1, cs2) {
-        return cs1.offset - cs2.offset;
-      });
+      this.fillStyle.colors_.sort((cs1, cs2) => cs1.offset - cs2.offset);
 
       for (var i = 0; i < this.fillStyle.colors_.length; i++) {
         var fs = this.fillStyle.colors_[i];
@@ -746,17 +750,15 @@ if (!window.CanvasRenderingContext2D) {
   };
 
   /******** STUBS ********/
-  contextPrototype.clip = function() {
+  contextPrototype.clip = () => {
     // TODO: Implement
   };
 
-  contextPrototype.arcTo = function() {
+  contextPrototype.arcTo = () => {
     // TODO: Implement
   };
 
-  contextPrototype.createPattern = function() {
-    return new CanvasPattern_;
-  };
+  contextPrototype.createPattern = () => new CanvasPattern_;
 
   // Gradient / Pattern Stubs
   function CanvasGradient_(aType) {
@@ -780,6 +782,6 @@ if (!window.CanvasRenderingContext2D) {
   CanvasGradient = CanvasGradient_;
   CanvasPattern = CanvasPattern_;
 
-})();
+}))();
 
 } // if

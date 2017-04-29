@@ -1,9 +1,9 @@
 function createRandomBodies(objCnt, canvas, world, fixDef, bodyDef) {
-	var b2Vec2 			= Box2D.Common.Math.b2Vec2,
-		b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape,
-		b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape;
-		
-	for (var i = 0; i < objCnt; i++) {
+    var b2Vec2 			= Box2D.Common.Math.b2Vec2;
+    var b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape;
+    var b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape;
+
+    for (var i = 0; i < objCnt; i++) {
 	    if (Math.random() > 0.3) {
 			fixDef.shape = new b2PolygonShape;
 			if (Math.random() > 0.3) {

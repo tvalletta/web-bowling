@@ -1,8 +1,8 @@
-var socket,
-	server = 'http://127.0.0.1:3008';  //todo: Be sure to use your servers ip address and port (L2.1 a)
+var socket;  //todo: Be sure to use your servers ip address and port (L2.1 a)
+var server = 'http://127.0.0.1:3008';
 
 
-var connect = function(callback) {
+var connect = callback => {
 	console.log("Attempting to connect to " + server);
 
     //Connect to server

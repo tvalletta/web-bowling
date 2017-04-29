@@ -1,10 +1,10 @@
-function Renderer(ctx, scale) { 
-	var b2Math			= Box2D.Common.Math.b2Math,
-		b2Shape			= Box2D.Collision.Shapes.b2Shape,
-		b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape,
-		b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape;
+function Renderer(ctx, scale) {
+    var b2Math			= Box2D.Common.Math.b2Math;
+    var b2Shape			= Box2D.Collision.Shapes.b2Shape;
+    var b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape;
+    var b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape;
 
-	this.render = function(world) {
+    this.render = function(world) {
 		ctx.clearRect(0,0,400,1000);
 		var fillMeta = {
 			color: {
@@ -51,7 +51,7 @@ function Renderer(ctx, scale) {
 		}
 	}
 
-	this.drawShape = function(shape, xf, strokeMeta, fillMeta) {
+    this.drawShape = function(shape, xf, strokeMeta, fillMeta) {
 		switch (shape.m_type) {
 		case b2Shape.e_circleShape:
 			{
@@ -85,24 +85,24 @@ function Renderer(ctx, scale) {
 		}
 	}
 
-	this.drawSolidCircle = function(center, radius, axis, strokeMeta, fillMeta) {
-		if(!radius) return;
-		var s = ctx,
-			cx = center.x * scale,
-			cy = center.y * scale;
-		s.moveTo(0, 0);
-		s.beginPath();
-		s.strokeStyle = this.toRGBA(strokeMeta.color, strokeMeta.alpha);
-		s.fillStyle = this.toRGBA(fillMeta.color, fillMeta.alpha);
-		s.arc(cx, cy, radius * scale, 0, Math.PI*2, true);
-		//s.moveTo(cx, cy);
-		//s.lineTo((center.x + axis.x * radius) * scale, (center.y + axis.y * radius) * scale);
-		s.closePath();
-		s.fill();
-		s.stroke();
-	};
+    this.drawSolidCircle = function(center, radius, axis, strokeMeta, fillMeta) {
+        if(!radius) return;
+        var s = ctx;
+        var cx = center.x * scale;
+        var cy = center.y * scale;
+        s.moveTo(0, 0);
+        s.beginPath();
+        s.strokeStyle = this.toRGBA(strokeMeta.color, strokeMeta.alpha);
+        s.fillStyle = this.toRGBA(fillMeta.color, fillMeta.alpha);
+        s.arc(cx, cy, radius * scale, 0, Math.PI*2, true);
+        //s.moveTo(cx, cy);
+        //s.lineTo((center.x + axis.x * radius) * scale, (center.y + axis.y * radius) * scale);
+        s.closePath();
+        s.fill();
+        s.stroke();
+    };
 
-	this.drawSolidPolygon = function(vertices, vertexCount, strokeMeta, fillMeta) {
+    this.drawSolidPolygon = function(vertices, vertexCount, strokeMeta, fillMeta) {
 		if(!vertexCount) return;
 		var s = ctx;
 		s.beginPath();
@@ -117,8 +117,6 @@ function Renderer(ctx, scale) {
 		s.fill();
 		s.stroke();
 	};
-	
-	this.toRGBA = function(color, alpha) {
-		return "rgba(" + color.r + "," + color.g + "," + color.b + "," + alpha + ")";
-	};	
+
+    this.toRGBA = (color, alpha) => "rgba(" + color.r + "," + color.g + "," + color.b + "," + alpha + ")";
 };
