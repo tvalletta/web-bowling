@@ -45,11 +45,11 @@ var GravitySensorAlpha = function() {
     this.accel = 0;
 
     this.calc = function() {
-        var ave = [],
-            I = this.values.length;
-        	i = I,
-            dir = 0,
-            total = 0;
+        var ave = [];
+        var I = this.values.length;
+        i = I,
+        dir = 0,
+        total = 0;
 
         while (--i) {
             if (!dir) {
@@ -84,8 +84,8 @@ var RotationSensorAlpha = function() {
     this.accel = 0;
 
     this.calc = function() {
-        var ave = [],
-            I = this.values.length
+        var ave = [];
+        var I = this.values.length;
         i = I,
             total = 0;
 
@@ -113,28 +113,26 @@ var RotationSensorAlpha = function() {
     };
 };
 
-var fakeSwing = function() {
-    return {
-        ax: { power: -99.59711052703855, accel: 0 },
-        ay: { power: 97.64433395275472, accel: 0 },
-        az: { power: -101.53791243975981, accel: 0 },
-        ra: { power: 47.35546643657994, accel: 0 },
-        rb: { power: -3.68660894791164, accel: 0 },
-        rg: { power: 0.35903623617507807, accel: 0 }
-    }
-};
+var fakeSwing = () => ({
+    ax: { power: -99.59711052703855, accel: 0 },
+    ay: { power: 97.64433395275472, accel: 0 },
+    az: { power: -101.53791243975981, accel: 0 },
+    ra: { power: 47.35546643657994, accel: 0 },
+    rb: { power: -3.68660894791164, accel: 0 },
+    rg: { power: 0.35903623617507807, accel: 0 }
+});
 
-var calcSwing = function() {
+var calcSwing = () => {
     //trimSwing();
-    
+
     var samples = playr.orient.length;
 
-    var ax = new GravitySensorX(),
-        ay = new GravitySensorY(),
-        az = new GravitySensorAlpha(),
-        ra = new RotationSensorAlpha(),
-        rb = new RotationSensorAlpha(),
-        rg = new RotationSensorAlpha();
+    var ax = new GravitySensorX();
+    var ay = new GravitySensorY();
+    var az = new GravitySensorAlpha();
+    var ra = new RotationSensorAlpha();
+    var rb = new RotationSensorAlpha();
+    var rg = new RotationSensorAlpha();
 
     for (var i = 0; i < samples; i++) {
         ax.values.push(playr.orient[i].ax);
@@ -163,7 +161,7 @@ var calcSwing = function() {
 };
 
 // Calculate Swing ------------------------------------------------------------
-var trimSwing = function() {
+var trimSwing = () => {
 	var cnt = playr.orient.length;
 	if (cnt) {
 	    for (var i = cnt; i > 0; i--) {
@@ -178,7 +176,7 @@ var trimSwing = function() {
 
 
 // Logging --------------------------------------------------------------------
-var output = function() {
+var output = () => {
     var table = document.createElement('table');
     for (var i = 0; i < playr.orient.length; i++) {
         var row = document.createElement('tr');
@@ -193,7 +191,7 @@ var output = function() {
     document.body.appendChild(table);
 };
 
-var outputText = function(text) {
+var outputText = text => {
     console.log('outputText');
     console.log(text);
     var div = document.createElement('div');

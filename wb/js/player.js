@@ -11,7 +11,7 @@ var playr = {};
  * This function will be called once we establish a connection with the websocket server.  It stores references
  * to dom elements and the recorded device motion data
  */
-var setReady = function() {
+var setReady = () => {
     //Keep references to the dom elements
     playr.floor = document.getElementById('floor');
     playr.btn = document.getElementById('ball');
@@ -26,7 +26,7 @@ var setReady = function() {
  * This is a callback function that gets attached to an event triggered when we our pressing the bowling ball
  * @param e
  */
-var ballGrab = function(e) {
+var ballGrab = e => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -50,7 +50,7 @@ var ballGrab = function(e) {
  * This is a callback function that gets attached to an event triggered when we stop pressing the bowling ball
  * @param e
  */
-var ballRelease = function(e) {
+var ballRelease = e => {
     //Remove class for touch
     //todo: remove class that makes ball spin (L1.2 e)
 
@@ -82,9 +82,9 @@ var ballRelease = function(e) {
  * and stores them in an array that we will use later to calculate the swing.
  * @param e
  */
-var record = function(e) {
-    var acl = e.accelerationIncludingGravity,
-        rot = e.rotationRate;
+var record = e => {
+    var acl = e.accelerationIncludingGravity;
+    var rot = e.rotationRate;
 
     var item = {
         ax: acl.x,
